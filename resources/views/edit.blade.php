@@ -365,8 +365,8 @@
                     <h4 class="card-title">Main Category form</h4>
                     <form action="{{url('update/')}}" method="post">
                       @csrf
+                      <input type="hidden" name="id" id="" placeholder="hidden" value="{{$editData[0]['id']}}">
                       <input type="text" name="name" id="" placeholder="Product Name" value="{{$editData[0]['name']}}">
-                      <input type="hidden" name="hidden" id="" placeholder="hidden" value="{{$editData[0]['id']}}">
                       <input type="submit" name="submit" value="Update">
                     </form>
                   </div>

@@ -52,9 +52,6 @@ class crudController extends Controller
         $databaseModel = crudModel::all();
         $showData = compact('databaseModel');
         return view('form', ['data' => $databaseModel]);
-        // return view('showTest', ['data' => $databaseModel]);
-        // return view('showTest')->with($showData);
-        // return view('showTest');
 
     }
 
@@ -81,28 +78,11 @@ class crudController extends Controller
      */
     public function update(Request $request)
     {
-        // $databaseModel = crudModel::find($request->id);
-        // $databaseModel->name = $request->name;
-        // $databaseModel->save();
-        // return redirect('form/');
+        $databaseModel = crudModel::find($request->id);
+        $databaseModel->name = $request->name;
+        $databaseModel->save();
 
-        // Failed to update
-        // $databaseModel = crudModel::find($request->id);
-        // if($databaseModel){
-        //     $databaseModel->name = $request->name;
-        //     $databaseModel->save();
-        //     return redirect('form/');
-        // }else{
-        //     echo "failed";
-        // }
-        $reqName = $request->name;
-        $reqId = $request->id;
-        $crudModel = crudModel::find($reqId);
-        $crudModel->name = $name;
-        $crudModel->save();
-      
-        
-        return redirect('show/');
+        return redirect('form/');
     }
 
     /**
@@ -115,10 +95,6 @@ class crudController extends Controller
     {
         $databaseModel = new crudModel();
         $destroyData = $databaseModel->where('id',$id)->delete();
-        if($destroyData){
-            return redirect('view');
-        }else{
-            die();
-        }
+        return redirect('form/');
     }
 }
